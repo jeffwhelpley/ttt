@@ -25,10 +25,10 @@
                             "src/styles.css"
                         ],
                         "server": "src/main.server.ts",
-                        "outputMode": "server",
                         "ssr": {
                             "entry": "src/server.ts"
-                        }
+                        },
+                        "prerender": false
                     },
                     "configurations": {
                         "production": {
@@ -89,5 +89,8 @@
                 }
             }
         }
+    },
+    "cli": {
+        "analytics": "acde223f-01c1-49da-a061-28f445bea44a"
     }
 }
