@@ -1,0 +1,36 @@
+.counter {
+  text-align: center;
+  padding: 1rem;
+}
+
+.counter h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1.25rem;
+  border: 2px solid #007bff;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+}
+
+button:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,30 @@
+.greeting {
+  text-align: center;
+  padding: 1rem;
+}
+
+.greeting h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid #dc3545;
+  background: #dc3545;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #c82333;
+  border-color: #c82333;
+}
+
+button:active {
+  transform: scale(0.95);
+}

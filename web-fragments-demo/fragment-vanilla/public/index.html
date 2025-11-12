@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanilla Fragment</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 1rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .color-changer {
+      text-align: center;
+    }
+
+    .color-box {
+      width: 150px;
+      height: 150px;
+      margin: 1rem auto;
+      border: 2px solid #333;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    button {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      border: 2px solid #28a745;
+      background: #28a745;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #218838;
+      border-color: #218838;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <div class="color-changer">
+    <div class="color-box" id="colorBox"></div>
+    <button id="changeColorBtn">Change Color</button>
+  </div>
+
+  <script>
+    const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE'];
+    let currentColorIndex = 0;
+
+    const colorBox = document.getElementById('colorBox');
+    const changeColorBtn = document.getElementById('changeColorBtn');
+
+    // Set initial color
+    colorBox.style.backgroundColor = colors[currentColorIndex];
+
+    changeColorBtn.addEventListener('click', () => {
+      currentColorIndex = (currentColorIndex + 1) % colors.length;
+      colorBox.style.backgroundColor = colors[currentColorIndex];
+    });
+  </script>
+</body>
+</html>
