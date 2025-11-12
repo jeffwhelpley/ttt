@@ -6,11 +6,40 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { FragmentGateway } from 'web-fragments/gateway';
+import { getNodeMiddleware } from 'web-fragments/gateway/node';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+
+// Create and configure the fragment gateway
+const gateway = new FragmentGateway();
+
+// Register Angular fragment
+gateway.registerFragment({
+  fragmentId: 'angular-fragment',
+  endpoint: 'http://localhost:3001',
+  routePatterns: ['/__wf/angular-fragment/:_*', '/'],
+  piercingClassNames: [],
+});
+
+// Register Vanilla JS fragment
+gateway.registerFragment({
+  fragmentId: 'vanilla-fragment',
+  endpoint: 'http://localhost:3002',
+  routePatterns: ['/__wf/vanilla-fragment/:_*', '/'],
+  piercingClassNames: [],
+});
+
+// Register React fragment
+gateway.registerFragment({
+  fragmentId: 'react-fragment',
+  endpoint: 'http://localhost:3003',
+  routePatterns: ['/__wf/react-fragment/:_*', '/'],
+  piercingClassNames: [],
+});
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -23,6 +52,12 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
+
+/**
+ * Use the web fragments middleware BEFORE serving static files
+ * This allows fragment requests to be intercepted and proxied
+ */
+app.use(getNodeMiddleware(gateway));
 
 /**
  * Serve static files from /browser
