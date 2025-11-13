@@ -15,14 +15,25 @@
                     "options": {
                         "browser": "src/main.ts",
                         "tsConfig": "tsconfig.app.json",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            }
+                        ],
                         "styles": [
                             "src/styles.css"
                         ],
                         "server": "src/main.server.ts",
+                        "outputMode": "server",
                         "ssr": {
                             "entry": "src/server.ts"
                         },
-                        "prerender": false
+                        "externalDependencies": [
+                            "web-fragments/gateway",
+                            "web-fragments/gateway/node",
+                            "htmlrewriter"
+                        ]
                     },
                     "configurations": {
                         "production": {

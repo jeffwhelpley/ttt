@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng run build && node dist/host-app/server/server.mjs",
+        "start": "npm run build && npm run serve",
         "build": "ng build --configuration development",
         "wfprep": "mkdir -p dist/host-app/server/dist && cp node_modules/htmlrewriter/dist/html_rewriter_bg.wasm dist/host-app/server/dist",
         "watch": "ng build --watch --configuration development",

@@ -14,6 +14,8 @@
                     "builder": "@angular/build:application",
                     "options": {
                         "browser": "src/main.ts",
+                        "baseHref": "http://localhost:3001/",
+                        "deployUrl": "http://localhost:3001/",
                         "tsConfig": "tsconfig.app.json",
                         "assets": [
                             {
