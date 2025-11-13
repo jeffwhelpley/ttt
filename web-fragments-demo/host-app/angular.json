@@ -15,12 +15,6 @@
                     "options": {
                         "browser": "src/main.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "public"
-                            }
-                        ],
                         "styles": [
                             "src/styles.css"
                         ],
@@ -47,9 +41,15 @@
                             "outputHashing": "all"
                         },
                         "development": {
-                            "optimization": false,
-                            "extractLicenses": false,
-                            "sourceMap": true
+                            "optimization": {
+                                "scripts": false,
+                                "styles": false
+                            },
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "aot": false,
+                            "outputHashing": "none"
                         }
                     },
                     "defaultConfiguration": "production"
