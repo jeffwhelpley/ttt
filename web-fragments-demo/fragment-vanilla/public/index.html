@@ -91,35 +91,37 @@
             colorBox.style.backgroundColor = colors[currentColorIndex];
         });
 
-        // Set up broadcast channel
-        const bc = new BroadcastChannel('/fragment-events');
+        // Set up broadcast channel only if elements exist
+        if (broadcastBtn && messageDisplay) {
+            const bc = new BroadcastChannel('/fragment-events');
 
-        bc.addEventListener('message', (event) => {
-            const { type, source } = event.data;
-            if (type === 'fragment_broadcast') {
-                if (source !== FRAGMENT_NAME) {
-                    messageDisplay.textContent = `Event received from ${source}`;
-                    messageDisplay.style.display = 'block';
-                } else {
-                    messageDisplay.textContent = '';
-                    messageDisplay.style.display = 'none';
+            bc.addEventListener('message', (event) => {
+                const { type, source } = event.data;
+                if (type === 'fragment_broadcast') {
+                    if (source !== FRAGMENT_NAME) {
+                        messageDisplay.textContent = `Event received from ${source}`;
+                        messageDisplay.style.display = 'block';
+                    } else {
+                        messageDisplay.textContent = '';
+                        messageDisplay.style.display = 'none';
+                    }
                 }
-            }
-        });
-
-        broadcastBtn.addEventListener('click', () => {
-            messageDisplay.textContent = '';
-            messageDisplay.style.display = 'none';
-            bc.postMessage({
-                type: 'fragment_broadcast',
-                source: FRAGMENT_NAME
             });
-        });
 
-        // Clean up on unload
-        window.addEventListener('beforeunload', () => {
-            bc.close();
-        });
+            broadcastBtn.addEventListener('click', () => {
+                messageDisplay.textContent = '';
+                messageDisplay.style.display = 'none';
+                bc.postMessage({
+                    type: 'fragment_broadcast',
+                    source: FRAGMENT_NAME
+                });
+            });
+
+            // Clean up on unload
+            window.addEventListener('beforeunload', () => {
+                bc.close();
+            });
+        }
     </script>
 </body>
 
