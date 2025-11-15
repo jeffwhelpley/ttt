@@ -8,6 +8,7 @@ import express from 'express';
 import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
+const fragmentPath = '/__wf/angular-fragment';
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
@@ -25,9 +26,10 @@ const angularApp = new AngularNodeAppEngine();
  */
 
 /**
- * Serve static files from /browser
+ * Serve static files from /browser at the fragment path
  */
 app.use(
+  fragmentPath,
   express.static(browserDistFolder, {
     maxAge: '1y',
     index: false,
@@ -36,9 +38,9 @@ app.use(
 );
 
 /**
- * Handle all other requests by rendering the Angular application.
+ * Handle all other requests at the fragment path by rendering the Angular application.
  */
-app.use((req, res, next) => {
+app.use(fragmentPath, (req, res, next) => {
   angularApp
     .handle(req)
     .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))

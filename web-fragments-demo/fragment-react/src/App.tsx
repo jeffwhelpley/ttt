@@ -56,12 +56,12 @@ function App() {
         <div className="greeting">
             <h3>{message}</h3>
             <button onClick={changeMessage}>Change Message</button>
-            <div className="broadcast-section">
+            {/* <div className="broadcast-section">
                 <button onClick={broadcastEvent}>Broadcast Event</button>
                 {receivedMessage && (
                     <p className="message">{receivedMessage}</p>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 }
