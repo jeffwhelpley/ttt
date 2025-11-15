@@ -14,8 +14,8 @@
                     "builder": "@angular/build:application",
                     "options": {
                         "browser": "src/main.ts",
-                        "baseHref": "http://localhost:3001/",
-                        "deployUrl": "http://localhost:3001/",
+                        "baseHref": "/__wf/angular-fragment/",
+                        "deployUrl": "/__wf/angular-fragment/",
                         "tsConfig": "tsconfig.app.json",
                         "assets": [
                             {

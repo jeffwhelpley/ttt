@@ -21,24 +21,21 @@ const gateway = new FragmentGateway();
 gateway.registerFragment({
   fragmentId: 'angular-fragment',
   endpoint: 'http://localhost:3001',
-  routePatterns: ['/__wf/angular-fragment/:_*', '/'],
-  piercingClassNames: [],
+  routePatterns: ['/__wf/angular-fragment/:_*'],
 });
 
 // Register Vanilla JS fragment
 gateway.registerFragment({
   fragmentId: 'vanilla-fragment',
   endpoint: 'http://localhost:3002',
-  routePatterns: ['/__wf/vanilla-fragment/:_*', '/'],
-  piercingClassNames: [],
+  routePatterns: ['/__wf/vanilla-fragment/:_*'],
 });
 
 // Register React fragment
 gateway.registerFragment({
   fragmentId: 'react-fragment',
   endpoint: 'http://localhost:3003',
-  routePatterns: ['/__wf/react-fragment/:_*', '/'],
-  piercingClassNames: [],
+  routePatterns: ['/__wf/react-fragment/:_*'],
 });
 
 /**
@@ -67,7 +64,7 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
-  }),
+  })
 );
 
 /**
@@ -76,9 +73,7 @@ app.use(
 app.use((req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
 
